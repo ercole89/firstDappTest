@@ -1,0 +1,304 @@
+---------------------CREAZIONE DI UNA REPOSITORY------------
+1) se hai problemi di autenticazione allora esegui prima questo:
+/*****************************
+se hai problemi allora esegui questo:
+https://stackoverflow.com/a/56598802
+Please find below the working solution for Windows:
+
+Open Control Panel from the Start menu.
+Select User Accounts.
+Select the "Credential Manager".
+Click on "Manage Windows Credentials".
+Delete any credentials related to Git or GitHub.
+Once you deleted all then try to clone again.
+
+vai nella cartella principale:
+cd ..
+poi scrivi
+
+rm -rf .git //oppure su vscode usa la prossima istruzione
+Remove-Item -Force -Recurse -Path .git
+git config --global user.email "davide.ercole89@gmail.com"
+git config --global user.name "ercole89"
+git init -b main
+git add .
+git -c user.name="ercole89" -c user.email="davide.ercole89@gmail.com" commit -m "message"
+gh repo create firstMilestone  //se vuoi creare una nuova repository
+git commit "primo commit"
+
+git remote add origin https://github.com/ercole89/12provaerc721.git
+git branch -M main
+git push -u origin main
+//***********************/
+
+1) crea una nuova cartella "firstDappTest" e aprile con VScode
+2) crea un file di readme.md scrivi giusto qualcosa e poi vai sull'estensione git a sinistra e fai initialize repository, fai commit e poi pusha (seleziona se privato o pubblico, come vuoi)
+3) dopo aver installato "github cli" apri "git CMD" 
+cd  C:\Users\raffa\Documents\ethDavide\firstDappTest
+4) vai su gitbash, nella cartella principale del progetto e scrivi:
+gh repo clone rmrk-team/evm-template
+5) cambia nome da evm-template a evm-contracts
+5) installa npm install @rmrk-team/evm-contracts
+6) installa hardhat nella cartella sample-contracts
+
+7) importante
+RIFAI LA REPOSITORY SCRIVENDO del .git su firstDappTest e del .git su evm-contracts
+poi cancella la repository e reinizializza una nuova repository
+
+
+
+
+npm add hardhat
+npm add hardhat --legacy-peer-deps
+npx hardhat
+npm install --save-dev @nomicfoundation/hardhat-toolbox #ha vulnerabilita
+
+3) scegli typescript project
+4) avvia una blockchain locale
+npx hardhat node
+5) se apri un nuovo terminale, ricordati di andare nella cartella chain per usare npx hardhat. Quindi apri il terminale, scrivi
+cd chain
+npx hardhat accounts //mostra gli accounts ma va in errore, quindi aggiugi questo script in hardhat.config.ts prima di "export default config;"
+import { HardhatUserConfig, task } from "hardhat/config";
+task("accounts", "Prints the list of accounts", async () => {
+  const accounts = await ethers.getSigners();
+
+  for (const account of accounts) {
+    console.log(account.address);
+  }
+});
+
+6) compile il file di testing
+npx hardhat compile
+7) fai il testing
+npx hardhat testing
+8) deploy il constratto "in-process" testnet
+npx hardhat run ./scripts/deploy.ts
+9) ovviamente il file compilato e deployiato è stato testato nella rete "in-process" e non in quella avviata tramite npx hardhat node (è quella "stand-alone"). per avviare un test nella rete "stand-alone", cioè quella dove sono stati creati i vari account, occorre avviare:
+npx hardhat compile --network localhost //(però ora dice che non c'è piu nulla da compilare)
+npx hardhat run ./scripts/deploy.ts --network localhost
+10) collega metamask. se da problemi eliminare la rete localhost se fosse già presente. assicurati che l'hai avviata npx hardhat node
+private key (UNSAFE è QUELLA STANDARD DI HARDHAT)
+0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+chain : http://127.0.0.1:8545/
+idchain: 31337
+
+
+11) npx hardhat run ./scripts/interact.ts --network localhost
+
+
+
+
+
+
+8) crea la cartella "web" dove metterai nextjs
+
+
+---------------------CREZIONE DELL APP NEXTJS---------------
+11) vai nella cartella principale (non quella "chain").
+cd ..
+12) installa un app nextjs con il nome "webapp" e imposta typescript e la cartella src
+npm create next-app webapp --typescript
+14) avvia l'app webapp
+cd webapp
+npm run dev
+15) apri un nuovo terminale e installa next-ui.org
+cd webapp
+npm install @nextui-org/react
+16) inserire un header all'app. crea una cartella components nella cartella src. poi crea un file header.tsx
+in header.tsx inserire il codice preso da nextui-org in particolar eil componente navbar. usa la direttiva 'use client'
+'use client'
+import React from "react";
+import { Navbar, Button, Link, Text, Card, Radio } from "@nextui-org/react";
+
+export default function Header() {
+  const [variant, setVariant] = React.useState("static");
+
+  const variants = ["static", "floating", "sticky"];
+  
+  return (
+
+      <Navbar isBordered variant={variant}>
+        <Navbar.Brand>
+          <Text b color="inherit" hideIn="xs">
+            ERC6059
+          </Text>
+        </Navbar.Brand>
+        <Navbar.Content hideIn="xs">
+          <Navbar.Link href="#">Caratteristiche</Navbar.Link>
+          <Navbar.Link isActive href="#">chi siamo</Navbar.Link>
+          <Navbar.Link href="#">ma che facciamo</Navbar.Link>
+          <Navbar.Link href="#">1 fiorino</Navbar.Link>
+        </Navbar.Content>
+        <Navbar.Content>
+          <Navbar.Link color="inherit" href="#">
+            disabilitato
+          </Navbar.Link>
+          <Navbar.Item>
+            <Button auto flat as={Link} href="#">
+              Connetti
+            </Button>
+          </Navbar.Item>
+        </Navbar.Content>
+      </Navbar>
+  )
+}
+17) nel file page.tsx inserisci questo all'inizio
+import Header from '../components/header'
+poi inserisci il componente <Header/>
+---------------CONNESSIONE A METAMASK----------------------
+18) in "webapp" aggiungi la libreria ethers.json
+npm add ethers
+19) attenzione, metamask funziona sul client e non sul server, quindi mettere la direttiva 'use client' anche alla pagina principale
+20) attenzione la versione 6 di ethers è instabile. ripristina la versione 5
+
+leggi qui:
+https://stackoverflow.com/questions/75743480/ethers-web3modal-property-providers-does-not-exist-on-type-typeof-import
+
+npm uninstall ethers
+npm i -S ethers@5.7.2
+oppure cambia la riga 
+const provider = new ethers.providers.Web3Provider(window.ethereum) //NON VA DALLA VERSIONE 6 DI ETHERS
+con la riga
+const provider = new ethers.BrowserProvider(window.ethereum) //nella versione 6 (ma poi hai altri errori)
+21) la page.tsx sarà la seguente
+'use client'
+import Image from 'next/image'
+import styles from './page.module.css'
+import Header from '../components/header'
+
+import { useState, useEffect} from 'react'
+import {ethers} from "ethers"
+import { Button, Link, Text, Card, Radio } from "@nextui-org/react";
+
+declare let window:any
+
+export default function Home() {
+    const [balance, setBalance] = useState<string | undefined>()
+    const [currentAccount, setCurrentAccount] = useState<string | undefined>()
+    const [chainId, setChainId] = useState<number | undefined>()
+    const [chainname, setChainName] = useState<string | undefined>()
+  
+    useEffect(() => {
+      if(!currentAccount || !ethers.utils.isAddress(currentAccount)) return
+      //client side code
+      if(!window.ethereum) return
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      provider.getBalance(currentAccount).then((result)=>{
+        setBalance(ethers.utils.formatEther(result))
+      })
+      provider.getNetwork().then((result)=>{
+        setChainId(result.chainId)
+        setChainName(result.name)
+      })
+  
+    },[currentAccount])
+  
+    const onClickConnect = () => {
+      //client side code
+      if(!window.ethereum) {
+        console.log("please install MetaMask")
+        return
+      }
+      if (typeof window === 'undefined') {
+        console.log("We are on the server, exit early.")
+        return;
+      }
+      /*
+      //change from window.ethereum.enable() which is deprecated
+      //see docs: https://docs.metamask.io/guide/ethereum-provider.html#legacy-methods
+      window.ethereum.request({ method: 'eth_requestAccounts' })
+      .then((accounts:any)=>{
+        if(accounts.length>0) setCurrentAccount(accounts[0])
+      })
+      .catch('error',console.error)
+      */
+  
+      //we can do it using ethers.js
+      const provider = new ethers.providers.Web3Provider(window.ethereum) //NON VA DALLA VERSIONE 6 DI ETHERS
+      //const provider = new ethers.BrowserProvider(window.ethereum) //nella versione 6 (ma poi hai altri errori)
+  
+      // MetaMask requires requesting permission to connect users accounts
+      provider.send("eth_requestAccounts", [])
+      .then((accounts)=>{
+        if(accounts.length>0) setCurrentAccount(accounts[0])
+      })
+      .catch((e)=>console.log(e))
+    }
+  
+    const onClickDisconnect = () => {
+      console.log("onClickDisConnect")
+      setBalance(undefined)
+      setCurrentAccount(undefined)
+    }
+  
+     
+  return (
+    <main className={styles.main}>
+      <div className={styles.description}>
+        <Header/>
+        {currentAccount  
+          ? <Button type="button" w='100%' onClick={onClickDisconnect}>
+                Account:{currentAccount}
+            </Button>
+          : <Button type="button" w='100%' onClick={onClickConnect}>
+                  Connect MetaMask
+              </Button>
+        }
+        <p>
+          si comincia&nbsp;
+          <code className={styles.code}>codice</code>
+        </p>
+        
+        
+      </div>
+
+      <div className={styles.center}>
+      {currentAccount  
+          ? <><Text>ETH Balance of current account: {balance}</Text>
+          <Text>Chain Info: ChainId {chainId} name {chainname}</Text></>
+          : <><Text>ETH Balance of current account: NONE</Text>
+          <Text>Chain Info: ChainId NONE</Text></>
+        }
+        <Image
+          className={styles.logo}
+          src="/next.svg"
+          alt="Next.js Logo"
+          width={180}
+          height={37}
+          priority
+        />
+      </div>
+
+      <div className={styles.grid}>
+        
+      </div>
+    </main>
+  )
+}
+TRE NOTE:
+Disconnettersi dalla pagina non cambierà la connessione e le autorizzazioni di MetaMask per questa pagina. Apri l'estensione MetaMask e vedrai che il tuo portafoglio è ancora connesso a questa pagina. La prossima volta che clicchi di nuovo sul pulsante "Connetti MetaMask", MetaMask non si aprirà per la conferma (poiché la tua conferma è ancora attiva). Devi disconnettere il portafoglio e la pagina da MetaMask.
+
+Non scriviamo codici per visualizzare i cambiamenti quando l'utente passa alla rete in MetaMask.
+
+Non conserviamo lo stato di questa pagina. Quindi, quando la pagina viene aggiornata, la connessione viene ripristinata.
+----------------NUOVO CONTRATTO ERC20---------------
+1) installa openzeppelin e rmrk 
+cd chain
+npm add @openzeppelin/contracts
+
+
+
+
+--------------------RIPRENDI IL PROGETTO------------------
+1) Apri VScode
+2)clone la repository
+apri la cartella chain
+scrivi npx hardhat node per avviare la blockchain locale
+se da errore, allora installa hardhat (npm install hardhat)
+torna indietro e vai sulla cartella webapp
+npm run dev per avviare il frontend di nextjs
+se non è riconosciuto allora va prima installato con il seguente comando
+npm install next@latest react@latest react-dom@latest
+
+
