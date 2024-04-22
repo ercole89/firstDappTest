@@ -105,7 +105,7 @@ npm run dev
 15) apri un nuovo terminale e installa next-ui.org
 cd webapp
 npm install @nextui-org/react
-16) inserire un header all'app. crea una cartella components nella cartella src. poi crea un file header.tsx
+16) inserire un header all'app. crea una cartella components nella cartella app. poi crea un file header.tsx
 in header.tsx inserire il codice preso da nextui-org in particolar eil componente navbar. usa la direttiva 'use client'
 'use client'
 import React from "react";
@@ -277,11 +277,13 @@ export default function Home() {
   )
 }
 TRE NOTE:
-Disconnettersi dalla pagina non cambierà la connessione e le autorizzazioni di MetaMask per questa pagina. Apri l'estensione MetaMask e vedrai che il tuo portafoglio è ancora connesso a questa pagina. La prossima volta che clicchi di nuovo sul pulsante "Connetti MetaMask", MetaMask non si aprirà per la conferma (poiché la tua conferma è ancora attiva). Devi disconnettere il portafoglio e la pagina da MetaMask.
-
+Disconnettersi dalla pagina non cambierà la connessione e le autorizzazioni di MetaMask per questa pagina. 
+Apri l'estensione MetaMask e vedrai che il tuo portafoglio è ancora connesso a questa pagina. 
+La prossima volta che clicchi di nuovo sul pulsante "Connetti MetaMask", MetaMask non si aprirà per la conferma (poiché la tua conferma è ancora attiva). 
+Devi disconnettere il portafoglio e la pagina da MetaMask.
 Non scriviamo codici per visualizzare i cambiamenti quando l'utente passa alla rete in MetaMask.
-
 Non conserviamo lo stato di questa pagina. Quindi, quando la pagina viene aggiornata, la connessione viene ripristinata.
+
 ----------------NUOVO CONTRATTO ERC20---------------
 1) installa openzeppelin e rmrk 
 cd chain
