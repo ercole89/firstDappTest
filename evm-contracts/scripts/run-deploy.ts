@@ -11,7 +11,7 @@ async function deployContracts(): Promise<SimpleEquippable> {
   console.log(`Deploying SimpleEquippable to ${network.name} blockchain...`);
 
   const contractFactory = await ethers.getContractFactory('SimpleEquippable');
-  const collectionMeta = "ipfs://QmT7YBD5Pt3owCFzBRaYTKQWAz9x3Z8mNJLjLLvrwnMqiX/metadataCollection.json"; // TODO: Replace with IPFS with metadata for collection, e.g. 'ipfs://collectionMeta.json' See https://evm.rmrk.app/metadata#collection-metadata for more info on expected content
+  const collectionMeta = "ipfs://Qmcq4NvF15Jf9VyEi1yDHyoAKqQdok5NdZ2PJJcwn6gW9B/timeSquad/collection_metadata_squad_aria.json"
   const maxSupply = 1000; // TODO: Replace with max supply of the collection
   const royaltyRecipient = (await ethers.getSigners())[0].address;
   const royaltyPercentageBps = 300; // 3%
@@ -19,21 +19,28 @@ async function deployContracts(): Promise<SimpleEquippable> {
   if (collectionMeta === undefined || maxSupply === undefined) {
     throw new Error('Please set collectionMeta and maxSupply');
   } else {
+    const [deployer] = await ethers.getSigners();
+    const provider = ethers.provider;  // Accedi al provider implicito di Hardhat
+    const nonce = await provider.getTransactionCount(deployer.address);
+
+    console.log(nonce);
     const args = [collectionMeta, maxSupply, royaltyRecipient, royaltyPercentageBps] as const;
-    const contract: SimpleEquippable = await contractFactory.deploy(...args);
+    const contract: SimpleEquippable = await contractFactory.deploy(...args, { nonce });
     await contract.waitForDeployment();
+    await delay(20000);
     const contractAddress = await contract.getAddress();
     console.log(`SimpleEquippable deployed to ${contractAddress}`);
 
     if (!isHardhatNetwork()) {
       console.log('Waiting 20 seconds before verifying contract...');
       await delay(20000);
+      /*
       await run('verify:verify', {
         address: contractAddress,
         constructorArguments: args,
         contract: 'contracts/SimpleEquippable.sol:SimpleEquippable',
       });
-
+*/
       // Only do on testing, or if whitelisted for production
       const registry = await getRegistry();
       await registry.addExternalCollection(contractAddress, args[0]);

@@ -1,3 +1,2 @@
 collectionSlug,name,description,mediaUri,thumbnailUri,tags
-sample_collection,Sample Collection,This is a sample collection,ipfs://QmXyZ,ipfs://QmXyZ,"tag1,tag2"
-sample_collection2,Sample Collection 2,This is a sample collection 2,ipfs://QmXyZ,ipfs://QmXyZ,"tag1,tag2"
+sample_collection,Sample Collection,This is a sample collection,ipfs://QmQNVfxwNjan3aYKo44WKr2yLfhBGb1dCggU3GUfVTDWLq/character/luna/item/ARMOR.png,ipfs://QmQNVfxwNjan3aYKo44WKr2yLfhBGb1dCggU3GUfVTDWLq/character/luna/item/LOGO.png,"tag1,tag2"

@@ -5,8 +5,8 @@ async function main() {
   const [deployer] = await ethers.getSigners();
   console.log(`Deployer address: ${deployer.address}`);
 
-  const catalogMetadataUri = undefined; // TODO: Replace with IPFS with metadata for collection, e.g. 'ipfs://collectionMeta.json' See https://evm.rmrk.app/metadata#catalog for more info on expected content
-  const catalogType = undefined; // TODO: Replace with catalog mime type, e.g. 'image/png'
+  const catalogMetadataUri = 'ipfs://Qmcq4NvF15Jf9VyEi1yDHyoAKqQdok5NdZ2PJJcwn6gW9B/catalog/catalogRyker.json'; // TODO: Replace with IPFS with metadata for collection, e.g. 'ipfs://collectionMeta.json' See https://evm.rmrk.app/metadata#catalog for more info on expected content
+  const catalogType = 'image/png'; // TODO: Replace with catalog mime type, e.g. 'image/png'
 
   if (catalogMetadataUri === undefined || catalogType === undefined) {
     console.log('Please set catalogMetadataUri and catalogType in scripts/run-deploy-catalog.ts');

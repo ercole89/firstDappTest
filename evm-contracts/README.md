@@ -12,6 +12,8 @@
 
 1. On a separate terminal, start a local hardhat node: `pnpm hardhat node`
 2. Deploy: `pnpm hardhat run scripts/deploy.ts --network localhost`
+2. Deploy: `npx hardhat run scripts/run-deploy.ts --network moonbaseAlpha`
+2. Deploy: `npx hardhat run scripts/run-deploy.ts --network localhost`
 3. Optionally deploy utils, to do tests locally. `pnpm hardhat run scripts/deployUtils.ts --network localhost`
 
 ## Deploying on a real blockchain
