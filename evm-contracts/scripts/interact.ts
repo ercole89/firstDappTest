@@ -26,7 +26,12 @@ async function main() {
 
     // Attesa della conferma della transazione
     const receipt = await transaction.wait();
-    console.log(`Minting completed. Check transaction: ${receipt.transactionHash}`);
+    if (receipt && 'transactionHash' in receipt) {
+        console.log(`Minting completed. Check transaction: ${receipt.transactionHash}`);
+    } else {
+        console.log("No transaction hash found.");
+    }
+
 }
 
 

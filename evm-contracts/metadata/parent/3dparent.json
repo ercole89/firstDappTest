@@ -1,0 +1,39 @@
+{
+    "description": "testParent#1",
+    "name": "Center PARENT1",
+    "attributes": [
+        {
+            "label": "sceneConfig",
+            "value": "{\"value\": {\"fov\":15,\"paddingTop\":1,\"bg_blur\":1,\"bg_intensity\":0.09999999999999998,\"background\":true,\"light_preset\":\"soft\",\"shadows\":\"contact\",\"light_intensity\":0,\"bloom\":0.09999999999999998,\"darkness\":0.5,\"offset\":0.1,\"environment\":\"night\"}}",
+            "trait_type": "sceneConfig",
+            "display_type": "string",
+            "type": "string"
+        },
+        {
+            "label": "Attack",
+            "type": "number",
+            "value": "10",
+            "trait_type": "Attack"
+        },
+        {
+            "label": "Defence",
+            "type": "number",
+            "value": "11",
+            "trait_type": "Defence"
+        },
+        {
+            "label": "Magic",
+            "type": "number",
+            "value": "12",
+            "trait_type": "Magic"
+        },
+        {
+            "label": "Fortune",
+            "type": "number",
+            "value": "13",
+            "trait_type": "Fortune"
+        }
+    ],
+    "mediaUri": "ipfs://QmNyy8A3RiQnc4hasWT2i8fNUmEFApZn6UUHHRcbskvQqd/parent/Ryker_Blade_GLB.glb",
+    "animation_url": "ipfs://QmNyy8A3RiQnc4hasWT2i8fNUmEFApZn6UUHHRcbskvQqd/parent/Ryker_Blade_GLB.glb"
+}

@@ -1,0 +1,8 @@
+{
+    "name": "Catalog test",
+    "description": "test catalog 3d",
+    "type": "jpeg",
+    "mediaUri": "ipfs://QmNyy8A3RiQnc4hasWT2i8fNUmEFApZn6UUHHRcbskvQqd/catalog/logocatalog.jpg",
+    "thumbnailUri": "ipfs://QmNyy8A3RiQnc4hasWT2i8fNUmEFApZn6UUHHRcbskvQqd/catalog/logocatalog.jpg",
+    "externalUri": "https://www.ageofchronos.com/"
+}
