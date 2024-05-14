@@ -1,0 +1,17 @@
+{
+    "description": "testChild#1",
+    "name": "Center CHILD1",
+    "attributes": [
+        {
+            "label": "sceneConfig",
+            "value": "{\"fov\":0,\"paddingTop\":0.1,\"bg_blur\":0.5,\"bg_intensity\":0.5,\"background\":true,\"light_preset\":\"rembrandt\",\"shadows\":\"contact\",\"light_intensity\":0.5,\"bloom\":1,\"darkness\":0.5,\"offset\":0.1,\"environment\":\"night\"}",
+            "trait_type": "sceneConfig",
+            "display_type": "string",
+            "type": "string"
+        }
+    ],
+    "mediaUri": "ipfs://QmNyy8A3RiQnc4hasWT2i8fNUmEFApZn6UUHHRcbskvQqd/child/Ryker_Blade_Swords.glb",
+    "animation_url": "ipfs://QmNyy8A3RiQnc4hasWT2i8fNUmEFApZn6UUHHRcbskvQqd/child/Ryker_Blade_Swords.glb",
+    "thumbnailUri": "ipfs://QmNyy8A3RiQnc4hasWT2i8fNUmEFApZn6UUHHRcbskvQqd/child/Ryker_Blade_Swords_thumb.glb",
+    "preferThumb": true
+}

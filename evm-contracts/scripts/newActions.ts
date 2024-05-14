@@ -1,3 +1,4 @@
+
 import { ethers } from 'hardhat';
 // Correct and check your import paths and names
 import { SimpleEquippableParent, SimpleEquippableChild, SimpleEquippableCatalog } from '../typechain-types';
@@ -15,13 +16,10 @@ async function main() {
     const childContract = await ethers.getContractAt("SimpleEquippableChild", contractAddresses['Child'], deployer);
     const catalogContract = await ethers.getContractAt("SimpleEquippableCatalog", contractAddresses['Catalog'], deployer);
 
-    const collectionMetaParent = "ipfs://Qmby1mSBsBjgXz3vhmADa9HRmAAvetS8bBSqgVuEDzfrJ4/parent/parent_collection.json"
-    const collectionMetaChild = "ipfs://Qmby1mSBsBjgXz3vhmADa9HRmAAvetS8bBSqgVuEDzfrJ4/child/child_collection.json"
-    const collectionMetaCatalog = "ipfs://Qmby1mSBsBjgXz3vhmADa9HRmAAvetS8bBSqgVuEDzfrJ4/catalog/catalogTest.json"
-    const slotMetadata = "ipfs://Qmby1mSBsBjgXz3vhmADa9HRmAAvetS8bBSqgVuEDzfrJ4/catalog/cap.json"
-    const parentMetadata = "ipfs://Qmby1mSBsBjgXz3vhmADa9HRmAAvetS8bBSqgVuEDzfrJ4/parent/3dparent.json"
+    const parentMetadata = "ipfs://QmUVN2do1M3Y4yxAsTrCxLTjnNii57gceEQJRBuerDXHTe"
 
     const SLOT_PART_ID = 1001;
+    const EQUIPPABLE_ID = SLOT_PART_ID;
     const FIXED_PART_ID = 1;
 
     const PART_TYPE_SLOT = 1;
@@ -40,55 +38,6 @@ async function main() {
     }
 
 
-/*
-    try {
-        const registry = await getRegistry();
-        let tx1 = await registry.addExternalCollection(contractAddresses['Parent'], collectionMetaParent);
-        let tx2 = await registry.addExternalCollection(contractAddresses['Child'], collectionMetaChild);
-        await Promise.all([
-            tx1.wait(), tx2.wait()]);
-        console.log('Collections added to Singular Registry');
-    } catch (error) {
-        console.error('Error during contract interaction:', error);
-    }
-
-    await parentContract.setAutoAcceptCollection(childContract.getAddress(), true);
-
-    
-    //configure catalog
-    try {
-
-        
-        let tx4 = await catalogContract.addPartList([
-            {
-                partId: SLOT_PART_ID,
-                part: {
-                    itemType: PART_TYPE_SLOT,
-                    z: Z_INDEX_ITEM,
-                    equippable: [contractAddresses['Child']],
-                    metadataURI: `${slotMetadata}`,
-                },
-            },
-            {
-                partId: FIXED_PART_ID,
-                part: {
-                    itemType: PART_TYPE_FIXED,
-                    z: Z_INDEX_PARENT,
-                    equippable: [],
-                    metadataURI: `${parentMetadata}`,
-                },
-            }
-        ]);
-        await tx4.wait();
-        
-        const tx = await catalogContract.setEquippableAddresses(SLOT_PART_ID, [childContract.getAddress()]);
-        await tx.wait();
-    } catch (error) {
-        console.error('Error during catalog configuration:', error);
-    }
-      
-      
-*/
 
     try {
 
@@ -107,7 +56,7 @@ async function main() {
     try {
 
         let txAddEquippableAssetEntry = await parentContract.addEquippableAssetEntry(
-            1,
+            EQUIPPABLE_ID,
             catalogContract.getAddress(),
             parentMetadata,
             [SLOT_PART_ID,
@@ -124,7 +73,7 @@ async function main() {
     try {
 
         let txaddAssetToToken = await parentContract.addAssetToToken(
-            1, //tokenId
+            6, //tokenId
             1, //AssetId
             0
         );

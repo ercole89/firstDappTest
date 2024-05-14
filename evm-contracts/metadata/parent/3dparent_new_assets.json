@@ -1,0 +1,104 @@
+{
+    "description": "testParent#1",
+    "name": "Center PARENT1",
+    "attributes": [
+        {
+            "label": "fov",
+            "type": "number",
+            "value": "15",
+            "trait_type": "fov"
+        },
+        {
+            "label": "paddingTop",
+            "type": "number",
+            "value": "1",
+            "trait_type": "paddingTop"
+        },
+        {
+            "label": "bg_blur",
+            "type": "number",
+            "value": "1",
+            "trait_type": "bg_blur"
+        },
+        {
+            "label": "bg_intensity",
+            "type": "number",
+            "value": "0.1",
+            "trait_type": "bg_intensity"
+        },
+        {
+            "label": "background",
+            "type": "boolean",
+            "value": "true",
+            "trait_type": "background"
+        },
+        {
+            "label": "light_preset",
+            "type": "string",
+            "value": "soft",
+            "trait_type": "light_preset"
+        },
+        {
+            "label": "shadows",
+            "type": "string",
+            "value": "contact",
+            "trait_type": "shadows"
+        },
+        {
+            "label": "light_intensity",
+            "type": "number",
+            "value": "0",
+            "trait_type": "light_intensity"
+        },
+        {
+            "label": "bloom",
+            "type": "number",
+            "value": "0.1",
+            "trait_type": "bloom"
+        },
+        {
+            "label": "darkness",
+            "type": "number",
+            "value": "0.5",
+            "trait_type": "darkness"
+        },
+        {
+            "label": "offset",
+            "type": "number",
+            "value": "0.1",
+            "trait_type": "offset"
+        },
+        {
+            "label": "environment",
+            "type": "string",
+            "value": "night",
+            "trait_type": "environment"
+        },
+        {
+            "label": "Attack",
+            "type": "number",
+            "value": "10",
+            "trait_type": "Attack"
+        },
+        {
+            "label": "Defence",
+            "type": "number",
+            "value": "11",
+            "trait_type": "Defence"
+        },
+        {
+            "label": "Magic",
+            "type": "number",
+            "value": "12",
+            "trait_type": "Magic"
+        },
+        {
+            "label": "Fortune",
+            "type": "number",
+            "value": "13",
+            "trait_type": "Fortune"
+        }
+    ],
+    "mediaUri": "ipfs://QmNyy8A3RiQnc4hasWT2i8fNUmEFApZn6UUHHRcbskvQqd/parent/Ryker_Blade_GLB.glb",
+    "animation_url": "ipfs://QmNyy8A3RiQnc4hasWT2i8fNUmEFApZn6UUHHRcbskvQqd/parent/Ryker_Blade_GLB.glb"
+}

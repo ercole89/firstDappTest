@@ -84,7 +84,7 @@ async function deployContractsCatalog(): Promise<SimpleEquippableCatalog> {
     const nonce = await provider.getTransactionCount(deployer.address);
 
     console.log(nonce);
-    const args = [collectionMeta, 'image/*'] as const;
+    const args = [collectionMeta, 'model/gltf-binary'] as const;
     const contract: SimpleEquippableCatalog = await contractFactory.deploy(...args, { nonce });
     await contract.waitForDeployment();
     await delay(1000);
